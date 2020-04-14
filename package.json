@@ -15,7 +15,13 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "sb": "start-storybook",
-    "precommit": "pretty-quick --staged"
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
