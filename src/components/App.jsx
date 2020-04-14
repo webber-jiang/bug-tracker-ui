@@ -1,6 +1,6 @@
 import React from "react";
 
-let s;
+let asd;
 
 const App = () => {
   return <div>App</div>;
