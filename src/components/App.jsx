@@ -10,7 +10,6 @@ const App = () => {
   return (
     <>
       <div>{hello}</div>
-      <div>{add(2, 4)}</div>
     </>
   );
 };
