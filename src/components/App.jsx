@@ -1,18 +1,5 @@
 import React from "react";
 
-const hello = "123";
-
-function add(a, b) {
-  return a + b;
-}
-
-const App = () => {
-  return (
-    <>
-      <div>{hello}</div>
-      <div>{add(2, 4)}</div>
-    </>
-  );
-};
+const App = () => <div>App</div>;
 
 export default App;
