@@ -11,11 +11,13 @@ import Navbar from "./navbar/Navbar";
 const App = () => {
   return (
     <Router history={history}>
-      <Navbar />
-      <Route path="/" exact component={DashBoard} />
-      <Route path="/landingPage" exact component={LandingPage} />
-      <Route path="/mainPage" exact component={MainPage} />
-      <Route path="/issuePage" exact component={IssuePage} />
+      <div>
+        <Navbar />
+        <Route path="/" exact component={DashBoard} />
+        <Route path="/landingPage" exact component={LandingPage} />
+        <Route path="/mainPage" exact component={MainPage} />
+        <Route path="/issuePage" exact component={IssuePage} />
+      </div>
     </Router>
   );
 };

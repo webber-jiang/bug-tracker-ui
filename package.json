@@ -15,8 +15,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "sb": "start-storybook",
-    "pre-commit": "lint-staged"
+    "storybook": "start-storybook",
+    "pre-commit": "lint-staged",
+    "build-storybook": "build-storybook -c .storybook -o .out"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
