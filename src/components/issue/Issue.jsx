@@ -1,5 +1,5 @@
 import React from "react";
 
-const Issue = () => <div>Issue Test storybook remote build</div>;
+const Issue = () => <div>Issue</div>;
 
 export default Issue;
