@@ -7,7 +7,7 @@ const IssuePage = () => {
   };
 
   getIssues();
-  return <div>Issuedfhgfhgfh</div>;
+  return <div>Issue fgfhghf</div>;
 };
 
 export default IssuePage;
