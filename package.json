@@ -23,9 +23,9 @@
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
       "eslint --fix",
-      "build-storybook -c .storybook -o .out",
       "prettier --write",
-      "git add"
+      "build-storybook -c .storybook -o .out",
+      "git add .out"
     ]
   },
   "eslintConfig": {
