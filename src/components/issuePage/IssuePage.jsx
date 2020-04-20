@@ -3,7 +3,7 @@ import api from "../../api";
 
 const IssuePage = () => {
   const getIssues = async () => {
-    return await api.get("/projects");
+    return await api.get("/issues");
   };
 
   getIssues();
