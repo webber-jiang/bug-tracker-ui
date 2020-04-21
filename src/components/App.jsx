@@ -23,6 +23,7 @@ const App = () => {
       <div>
         <Navbar />
         <Switch>
+          {/* TODO: make other paths PrivateRoute as well */}
           <Route path="/" exact component={DashBoard} />
           <Route path="/landingPage" component={LandingPage} />
           <Route path="/mainPage" component={MainPage} />

@@ -1,4 +1,5 @@
 {
   "domain": "dev-5j3doydu.au.auth0.com",
-  "clientId": "ddoLZYugm6pv11czqkW7uIn1pCFJwmj0"
+  "clientId": "ddoLZYugm6pv11czqkW7uIn1pCFJwmj0",
+  "audience": "http://localhost:3001"
 }
