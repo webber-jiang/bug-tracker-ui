@@ -20,8 +20,7 @@ const MainPage = () => {
 
   React.useEffect(() => {
     callApi();
-    console.log("Hello world");
-  }, [callApi]);
+  });
 
   console.log(commentsState);
 
