@@ -1,13 +1,13 @@
 import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
 
-import history from "../history";
+import history from "../utils/history";
 import LandingPage from "./landingPage/LandingPage";
 import DashBoard from "./dashBoard/DashBoard";
 import MainPage from "./mainPage/MainPage";
 import IssuePage from "./issuePage/IssuePage";
 import Navbar from "./navbar/Navbar";
-import { useAuth0 } from "../react-auth0-spa";
+import { useAuth0 } from "../utils/react-auth0-spa";
 import Profile from "./profile";
 import PrivateRoute from "./privateRoute";
 

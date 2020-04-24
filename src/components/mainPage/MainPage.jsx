@@ -1,18 +1,34 @@
 import React from "react";
-import api from "../../api";
-import { Link } from "react-router-dom";
+import { api } from "../../api";
+import { CommentsContext } from "../../Store";
 
 const MainPage = () => {
+  const { commentsState, commentsDispatch } = React.useContext(CommentsContext);
+
+  // testing context API call
   const callApi = async () => {
-    return await api.get("/projects");
+    try {
+      const response = await api.get("comments");
+      return commentsDispatch({
+        type: "FETCH_COMMENTS",
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  callApi();
+  React.useEffect(() => {
+    callApi();
+    console.log("Hello world");
+  }, [callApi]);
+
+  console.log(commentsState);
+
   return (
-    <div>
-      MainPage
-      <Link to="/issuePage">To issue page</Link>
-    </div>
+    <>
+      <div>MainPage</div>
+    </>
   );
 };
 

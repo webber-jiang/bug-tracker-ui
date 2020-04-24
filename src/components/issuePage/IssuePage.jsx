@@ -1,36 +1,37 @@
-import React, { useState } from "react";
-import api from "../../api";
-import { useAuth0 } from "../../react-auth0-spa";
+import React from "react";
+import { api } from "../../api";
+import { IssuesContext } from "../../Store";
+import { useAuth0 } from "../../utils/react-auth0-spa";
+import { FETCH_ISSUES } from "../../utils/Types";
 
 const IssuePage = () => {
-  const [showResult, setShowResult] = useState(false);
-  const [apiMessage, setApiMessage] = useState("");
+  const { issuesState, issuesDispatch } = React.useContext(IssuesContext);
   const { getTokenSilently } = useAuth0();
 
+  // testing context API call with JTW
   const callApi = async () => {
     try {
       const token = await getTokenSilently();
-
-      const response = await api.get("/issues", {
+      const response = await api.get("issues", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-
-      const responseData = await response.json();
-
-      setShowResult(true);
-      setApiMessage(responseData);
+      return issuesDispatch({
+        type: FETCH_ISSUES,
+        payload: response.data,
+      });
     } catch (error) {
       console.error(error);
     }
   };
 
+  console.log(issuesState);
+
   return (
     <>
       <h1>IssuePage</h1>
       <button onClick={callApi}>Ping API</button>
-      {showResult && <code>{JSON.stringify(apiMessage, null, 2)}</code>}
     </>
   );
 };
