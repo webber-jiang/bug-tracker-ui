@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
-import { Auth0Provider } from "./react-auth0-spa";
-import config from "./auth_config.json";
-import history from "./history";
+import { Auth0Provider } from "./utils/react-auth0-spa";
+import config from "./utils/auth_config.json";
+import history from "./utils/history";
 
 import App from "./components/App";
+import { StoreProvider } from "./Store";
 
 // A function that routes the user to the right place
 // after login
@@ -25,7 +26,9 @@ ReactDOM.render(
     audience={config.audience}
     onRedirectCallback={onRedirectCallback}
   >
-    <App />
+    <StoreProvider>
+      <App />
+    </StoreProvider>
   </Auth0Provider>,
   document.getElementById("root")
 );
