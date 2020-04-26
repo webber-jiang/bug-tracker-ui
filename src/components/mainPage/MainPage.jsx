@@ -7,7 +7,7 @@ const MainPage = () => {
   const { commentsState, commentsDispatch } = React.useContext(CommentsContext);
 
   // testing context API call
-  const callApi = async () => {
+  const fetchComments = async () => {
     try {
       const response = await api.get("comments");
       return commentsDispatch({
@@ -19,15 +19,12 @@ const MainPage = () => {
     }
   };
 
-  React.useEffect(() => {
-    callApi();
-  });
-
   console.log(commentsState);
 
   return (
     <>
       <div>MainPage</div>
+      <button onClick={fetchComments}>Fetch comments</button>
     </>
   );
 };
