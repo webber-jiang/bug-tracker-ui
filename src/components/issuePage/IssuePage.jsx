@@ -49,11 +49,10 @@ const IssuePage = () => {
     }
   };
 
-  // not working properly, there is a bug in the backend
   const fetchIssuesByProjectId = async (project_id) => {
     try {
       const token = await getTokenSilently();
-      const response = await api.get(`projects/${project_id}`, {
+      const response = await api.get(`issues/projects/${project_id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -140,7 +139,7 @@ const IssuePage = () => {
       <h1>IssuePage</h1>
       <button onClick={fetchIssues}>fetchIssues</button>
       <button onClick={() => fetchIssueById(1)}>fetchIssueByIssueId</button>
-      <button onClick={() => fetchIssuesByProjectId(5)}>
+      <button onClick={() => fetchIssuesByProjectId(6)}>
         fetchIssuesByProjectId
       </button>
       <button onClick={createIssue}>createIssue</button>
