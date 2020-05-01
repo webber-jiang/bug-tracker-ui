@@ -14,20 +14,35 @@ export const issuesInitialState = {
   updateIssue: {},
 };
 
-export const issuesReducer = (IssuesInitialState, action) => {
+export const issuesReducer = (state = issuesInitialState, action) => {
   switch (action.type) {
     case FETCH_ISSUES:
-      return { ...IssuesInitialState, issues: action.payload };
+      return { ...state, issues: action.payload };
     case FETCH_ISSUE_BY_ID:
-      return { ...IssuesInitialState, issue: action.payload };
+      return { ...state, issue: action.payload };
     case FETCH_ISSUES_BY_PROJECT_ID:
-      return { ...IssuesInitialState, issuesByProject: action.payload };
+      return { ...state, issuesByProject: action.payload };
     case CREATE_ISSUE:
+      return {
+        ...state,
+        issues: [...state.issues, action.payload],
+        issuesByProject: [...state.issuesByProject, action.payload],
+      };
     case UPDATE_ISSUE:
-      return { ...IssuesInitialState, updateIssue: action.payload };
+      return { ...state, updateIssue: action.payload };
     case DELETE_ISSUE:
-      return { ...IssuesInitialState };
+      return {
+        ...state,
+        issues: [
+          ...state.issues.filter((issue) => issue.issueId !== action.payload),
+        ],
+        issuesByProject: [
+          ...state.issuesByProject.filter(
+            (issue) => issue.issueId !== action.payload
+          ),
+        ],
+      };
     default:
-      return IssuesInitialState;
+      return state;
   }
 };
