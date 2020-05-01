@@ -86,6 +86,7 @@ const IssuePage = () => {
       });
       return issuesDispatch({
         type: CREATE_ISSUE,
+        payload: data,
       });
     } catch (error) {
       console.error(error);
@@ -126,6 +127,7 @@ const IssuePage = () => {
       });
       return issuesDispatch({
         type: DELETE_ISSUE,
+        payload: issue_id,
       });
     } catch (error) {
       console.error(error);
@@ -144,7 +146,7 @@ const IssuePage = () => {
       </button>
       <button onClick={createIssue}>createIssue</button>
       <button onClick={() => updateIssue(86)}>updateIssue</button>
-      <button onClick={() => deleteIssue(1)}>deleteIssue</button>
+      <button onClick={() => deleteIssue(87)}>deleteIssue</button>
     </>
   );
 };
