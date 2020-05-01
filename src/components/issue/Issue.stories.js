@@ -1,6 +1,6 @@
 import React from "react";
+import { storiesOf } from "@storybook/react";
+
 import Issue from "./Issue";
 
-export default { title: "Issue" };
-
-export const defaultView = () => <Issue />;
+storiesOf("Issue", module).add("Default view", () => <Issue />);
