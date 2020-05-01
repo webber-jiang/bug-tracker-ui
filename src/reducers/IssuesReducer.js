@@ -23,11 +23,25 @@ export const issuesReducer = (state = issuesInitialState, action) => {
     case FETCH_ISSUES_BY_PROJECT_ID:
       return { ...state, issuesByProject: action.payload };
     case CREATE_ISSUE:
-      return { ...state };
+      return {
+        ...state,
+        issues: [...state.issues, action.payload],
+        issuesByProject: [...state.issuesByProject, action.payload],
+      };
     case UPDATE_ISSUE:
       return { ...state, updateIssue: action.payload };
     case DELETE_ISSUE:
-      return { ...state };
+      return {
+        ...state,
+        issues: [
+          ...state.issues.filter((issue) => issue.issueId !== action.payload),
+        ],
+        issuesByProject: [
+          ...state.issuesByProject.filter(
+            (issue) => issue.issueId !== action.payload
+          ),
+        ],
+      };
     default:
       return state;
   }
