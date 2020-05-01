@@ -1,12 +1,48 @@
-import { FETCH_ISSUES } from "../utils/Types";
+import {
+  FETCH_ISSUES,
+  FETCH_ISSUE_BY_ID,
+  FETCH_ISSUES_BY_PROJECT_ID,
+  CREATE_ISSUE,
+  UPDATE_ISSUE,
+  DELETE_ISSUE,
+} from "../utils/Types";
 
-export const issuesInitialState = { issues: [], issue: "" };
+export const issuesInitialState = {
+  issues: [],
+  issue: {},
+  issuesByProject: [],
+  updateIssue: {},
+};
 
-export const issuesReducer = (IssuesInitialState, action) => {
+export const issuesReducer = (state = issuesInitialState, action) => {
   switch (action.type) {
     case FETCH_ISSUES:
-      return { ...IssuesInitialState, issues: action.payload };
+      return { ...state, issues: action.payload };
+    case FETCH_ISSUE_BY_ID:
+      return { ...state, issue: action.payload };
+    case FETCH_ISSUES_BY_PROJECT_ID:
+      return { ...state, issuesByProject: action.payload };
+    case CREATE_ISSUE:
+      return {
+        ...state,
+        issues: [...state.issues, action.payload],
+        issuesByProject: [...state.issuesByProject, action.payload],
+      };
+    case UPDATE_ISSUE:
+      return { ...state, updateIssue: action.payload };
+    case DELETE_ISSUE:
+      return {
+        ...state,
+        issues: [
+          ...state.issues.filter((issue) => issue.issueId !== action.payload),
+        ],
+        issuesByProject: [
+          ...state.issuesByProject.filter(
+            (issue) => issue.issueId !== action.payload
+          ),
+        ],
+      };
     default:
-      return IssuesInitialState;
+      return state;
   }
 };
