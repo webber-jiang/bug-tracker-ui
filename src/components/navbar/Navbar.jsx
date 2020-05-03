@@ -30,7 +30,7 @@ const NavBar = () => {
     } catch (error) {
       console.error(error);
     }
-  });
+  }, [getTokenSilently, projectsDispatch]);
 
   useEffect(() => {
     fetchProjects();
