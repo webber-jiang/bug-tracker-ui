@@ -148,7 +148,6 @@ const NavBar = () => {
           {renderProjectsDropdown()}
           {renderPlaceholderDropdown()}
         </Nav>
-        <button onClick={fetchProjects}>fetchProjects</button>
         {renderSettings()}
         {renderHelp()}
         {renderAvatar()}
