@@ -1,6 +1,9 @@
 import React from "react";
+import { storiesOf } from "@storybook/react";
+
+import { StoreProvider } from "../../Store";
 import MainPage from "./MainPage";
 
-export default { title: "MainPage" };
-
-export const defaultView = () => <MainPage />;
+storiesOf("Main page", module)
+  .addDecorator((storyFn) => <StoreProvider>{storyFn()}</StoreProvider>)
+  .add("default view", () => <MainPage />);
