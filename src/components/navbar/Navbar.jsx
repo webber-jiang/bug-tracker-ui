@@ -13,7 +13,7 @@ import { FETCH_PROJECTS } from "../../utils/Types";
 
 const NavBar = () => {
   const { projectsState, projectsDispatch } = React.useContext(ProjectsContext);
-  const { getTokenSilently } = useAuth0();
+  const { getTokenSilently, user } = useAuth0();
 
   const fetchProjects = useCallback(async () => {
     const token = await getTokenSilently();
@@ -127,10 +127,16 @@ const NavBar = () => {
   const renderAvatar = () => {
     return (
       <Dropdown
-        text={<i className="fas fa-user-circle" />}
+        text={
+          <img
+            src={user.picture}
+            alt={`Avatar: ${user.name}`}
+            style={{ width: 30, borderRadius: 15 }}
+          />
+        }
         inline
         icon=""
-        style={{ fontSize: 24 }}
+        style={{ marginTop: 5 }}
       >
         <Dropdown.Menu>
           <Dropdown.Item text="New" />
