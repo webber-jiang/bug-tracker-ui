@@ -13,7 +13,7 @@ import { FETCH_PROJECTS } from "../../utils/Types";
 
 const NavBar = () => {
   const { projectsState, projectsDispatch } = React.useContext(ProjectsContext);
-  const { getTokenSilently, user } = useAuth0();
+  const { getTokenSilently, user, isAuthenticated } = useAuth0();
 
   const fetchProjects = useCallback(async () => {
     const token = await getTokenSilently();
@@ -69,10 +69,12 @@ const NavBar = () => {
             ? ""
             : projectsState.projects.slice(0, 5).map((project) => {
                 return (
-                  <Dropdown.Item
-                    key={project.projectId}
-                    text={project.projectName}
-                  />
+                  <>
+                    <Dropdown.Item
+                      key={project.projectId}
+                      text={project.projectName}
+                    />
+                  </>
                 );
               })}
         </Dropdown.Menu>
@@ -146,19 +148,21 @@ const NavBar = () => {
   };
 
   return (
-    <Navbar bg="light" expand="lg">
-      {renderIcon()}
-      {renderSearch()}
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          {renderProjectsDropdown()}
-          {renderPlaceholderDropdown()}
-        </Nav>
-        {renderSettings()}
-        {renderHelp()}
-        {renderAvatar()}
-      </Navbar.Collapse>
-    </Navbar>
+    isAuthenticated && (
+      <Navbar bg="light" expand="lg">
+        {renderIcon()}
+        {renderSearch()}
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            {renderProjectsDropdown()}
+            {renderPlaceholderDropdown()}
+          </Nav>
+          {renderSettings()}
+          {renderHelp()}
+          {renderAvatar()}
+        </Navbar.Collapse>
+      </Navbar>
+    )
   );
 };
 
