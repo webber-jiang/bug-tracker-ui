@@ -12,15 +12,15 @@ const NavBar = () => {
     <Navbar bg="light" expand="lg">
       <Navbar.Brand href="#home">
         <span style={{ fontSize: 36, color: "black" }}>
-          <i className="fab fa-reddit"></i>
+          <i className="fab fa-reddit" />
         </span>
       </Navbar.Brand>
-      <Form inline>
-        <InputGroup className="mb-3">
-          <FormControl placeholder="Search" />
+      <Form inline style={{ width: "20%", marginTop: 10 }}>
+        <InputGroup className="mb-3" style={{ width: "100%" }}>
+          <FormControl placeholder="Search" style={{ width: "100%" }} />
           <InputGroup.Append>
             <Button variant="outline-secondary">
-              <i class="fas fa-search"></i>
+              <i className="fas fa-search" />
             </Button>
           </InputGroup.Append>
         </InputGroup>
