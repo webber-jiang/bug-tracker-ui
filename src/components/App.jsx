@@ -6,7 +6,7 @@ import LandingPage from "./landingPage/LandingPage";
 import DashBoard from "./dashBoard/DashBoard";
 import MainPage from "./mainPage/MainPage";
 import IssuePage from "./issuePage/IssuePage";
-import NavBar from "./navbar/NavBar";
+import NavBar from "./navbar/Navbar";
 import { useAuth0 } from "../utils/react-auth0-spa";
 import Profile from "./profile";
 import PrivateRoute from "./privateRoute";

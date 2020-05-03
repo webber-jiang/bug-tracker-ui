@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useCallback } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
@@ -6,15 +6,48 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import { Dropdown } from "semantic-ui-react";
 import InputGroup from "react-bootstrap/InputGroup";
+import { useAuth0 } from "../../utils/react-auth0-spa";
+import { ProjectsContext } from "../../Store";
+import { api } from "../../api";
+import { FETCH_PROJECTS } from "../../utils/Types";
 
 const NavBar = () => {
-  return (
-    <Navbar bg="light" expand="lg">
+  const { projectsState, projectsDispatch } = React.useContext(ProjectsContext);
+  const { getTokenSilently } = useAuth0();
+
+  const fetchProjects = useCallback(async () => {
+    const token = await getTokenSilently();
+    try {
+      const response = await api.get("projects", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return projectsDispatch({
+        type: FETCH_PROJECTS,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
+  useEffect(() => {
+    fetchProjects();
+  }, [fetchProjects]);
+
+  const renderIcon = () => {
+    return (
       <Navbar.Brand href="#home">
         <span style={{ fontSize: 36, color: "black" }}>
           <i className="fab fa-reddit" />
         </span>
       </Navbar.Brand>
+    );
+  };
+
+  const renderSearch = () => {
+    return (
       <Form inline style={{ width: "20%", marginTop: 10 }}>
         <InputGroup className="mb-3" style={{ width: "100%" }}>
           <FormControl placeholder="Search" style={{ width: "100%" }} />
@@ -25,39 +58,100 @@ const NavBar = () => {
           </InputGroup.Append>
         </InputGroup>
       </Form>
+    );
+  };
+
+  const renderProjectsDropdown = () => {
+    return (
+      <Dropdown text="Projects" style={{ fontSize: 24, marginLeft: 20 }} inline>
+        <Dropdown.Menu>
+          {projectsState.projects.length === 0
+            ? ""
+            : projectsState.projects.slice(0, 5).map((project) => {
+                return (
+                  <Dropdown.Item
+                    key={project.projectId}
+                    text={project.projectName}
+                  />
+                );
+              })}
+        </Dropdown.Menu>
+      </Dropdown>
+    );
+  };
+
+  const renderPlaceholderDropdown = () => {
+    return (
+      <Dropdown
+        text="Placeholder"
+        style={{ fontSize: 24, marginLeft: 30 }}
+        inline
+      >
+        <Dropdown.Menu>
+          <Dropdown.Item text="New" />
+        </Dropdown.Menu>
+      </Dropdown>
+    );
+  };
+
+  const renderSettings = () => {
+    return (
+      <Dropdown
+        text={<i className="fas fa-cog" />}
+        inline
+        icon=""
+        style={{ fontSize: 24 }}
+      >
+        <Dropdown.Menu>
+          <Dropdown.Item text="New" />
+        </Dropdown.Menu>
+      </Dropdown>
+    );
+  };
+
+  const renderHelp = () => {
+    return (
+      <Dropdown
+        text={<i className="fas fa-question-circle" />}
+        inline
+        icon=""
+        style={{ fontSize: 24 }}
+      >
+        <Dropdown.Menu>
+          <Dropdown.Item text="New" />
+        </Dropdown.Menu>
+      </Dropdown>
+    );
+  };
+
+  const renderAvatar = () => {
+    return (
+      <Dropdown
+        text={<i className="fas fa-user-circle" />}
+        inline
+        icon=""
+        style={{ fontSize: 24 }}
+      >
+        <Dropdown.Menu>
+          <Dropdown.Item text="New" />
+        </Dropdown.Menu>
+      </Dropdown>
+    );
+  };
+
+  return (
+    <Navbar bg="light" expand="lg">
+      {renderIcon()}
+      {renderSearch()}
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Dropdown
-            text="Projects"
-            style={{ fontSize: 24, marginLeft: 20 }}
-            inline
-          >
-            <Dropdown.Menu>
-              <Dropdown.Item text="New" />
-              <Dropdown.Item text="Open..." description="ctrl + o" />
-              <Dropdown.Item text="Save as..." description="ctrl + s" />
-              <Dropdown.Item text="Rename" description="ctrl + r" />
-              <Dropdown.Item text="Make a copy" />
-              <Dropdown.Item icon="folder" text="Move to folder" />
-              <Dropdown.Item icon="trash" text="Move to trash" />
-              <Dropdown.Divider />
-              <Dropdown.Item text="Download As..." />
-              <Dropdown.Item text="Publish To Web" />
-              <Dropdown.Item text="E-mail Collaborators" />
-            </Dropdown.Menu>
-          </Dropdown>
-          <Dropdown
-            text="Placeholder"
-            style={{ fontSize: 24, marginLeft: 30 }}
-            inline
-          >
-            <Dropdown.Menu>
-              <Dropdown.Item text="New" />
-            </Dropdown.Menu>
-          </Dropdown>
+          {renderProjectsDropdown()}
+          {renderPlaceholderDropdown()}
         </Nav>
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#link">Link</Nav.Link>
+        <button onClick={fetchProjects}>fetchProjects</button>
+        {renderSettings()}
+        {renderHelp()}
+        {renderAvatar()}
       </Navbar.Collapse>
     </Navbar>
   );
