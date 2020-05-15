@@ -2,16 +2,20 @@ import React from "react";
 import { useAuth0 } from "../../utils/react-auth0-spa";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (): JSX.Element => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
+  console.log(loginWithRedirect);
 
   return (
     <div>
       {!isAuthenticated && (
-        <button onClick={() => loginWithRedirect({})}>Log in</button>
+        <button onClick={(): any => loginWithRedirect({})}>Log in</button>
       )}
 
-      {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
+      {isAuthenticated && (
+        <button onClick={(): any => logout()}>Log out</button>
+      )}
 
       {isAuthenticated && (
         <span>

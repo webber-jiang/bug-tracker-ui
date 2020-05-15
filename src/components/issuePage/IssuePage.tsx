@@ -10,12 +10,13 @@ import {
   UPDATE_ISSUE,
   DELETE_ISSUE,
 } from "../../utils/Types";
+import { IssuesInitialState } from "../../reducers/IssuesReducer";
 
-const IssuePage = () => {
+const IssuePage = (): JSX.Element => {
   const { issuesState, issuesDispatch } = React.useContext(IssuesContext);
   const { getTokenSilently } = useAuth0();
 
-  const fetchIssues = async () => {
+  const fetchIssues = async (): Promise<IssuesInitialState | undefined> => {
     try {
       const token = await getTokenSilently();
       const response = await api.get("issues", {
@@ -32,7 +33,11 @@ const IssuePage = () => {
     }
   };
 
-  const fetchIssueById = async (issue_id) => {
+  console.log(fetchIssues);
+
+  const fetchIssueById = async (
+    issue_id: number
+  ): Promise<IssuesInitialState | undefined> => {
     try {
       const token = await getTokenSilently();
       const response = await api.get(`issues/${issue_id}`, {
@@ -49,7 +54,9 @@ const IssuePage = () => {
     }
   };
 
-  const fetchIssuesByProjectId = async (project_id) => {
+  const fetchIssuesByProjectId = async (
+    project_id: number
+  ): Promise<IssuesInitialState | undefined> => {
     try {
       const token = await getTokenSilently();
       const response = await api.get(`issues/projects/${project_id}`, {
@@ -66,7 +73,7 @@ const IssuePage = () => {
     }
   };
 
-  const createIssue = async () => {
+  const createIssue = async (): Promise<IssuesInitialState | undefined> => {
     const data = {
       project_id: 6,
       priority_id: "00",
@@ -93,7 +100,9 @@ const IssuePage = () => {
     }
   };
 
-  const updateIssue = async (issue_id) => {
+  const updateIssue = async (
+    issue_id: number
+  ): Promise<IssuesInitialState | undefined> => {
     const data = {
       priority_id: "01",
       status_id: "1",
@@ -117,7 +126,9 @@ const IssuePage = () => {
     }
   };
 
-  const deleteIssue = async (issue_id) => {
+  const deleteIssue = async (
+    issue_id: number
+  ): Promise<IssuesInitialState | undefined> => {
     try {
       const token = await getTokenSilently();
       await api.delete(`issues/${issue_id}`, {
@@ -140,13 +151,31 @@ const IssuePage = () => {
     <>
       <h1>IssuePage</h1>
       <button onClick={fetchIssues}>fetchIssues</button>
-      <button onClick={() => fetchIssueById(1)}>fetchIssueByIssueId</button>
-      <button onClick={() => fetchIssuesByProjectId(6)}>
+      <button
+        onClick={(): Promise<IssuesInitialState | undefined> =>
+          fetchIssueById(1)
+        }
+      >
+        fetchIssueByIssueId
+      </button>
+      <button
+        onClick={(): Promise<IssuesInitialState | undefined> =>
+          fetchIssuesByProjectId(6)
+        }
+      >
         fetchIssuesByProjectId
       </button>
       <button onClick={createIssue}>createIssue</button>
-      <button onClick={() => updateIssue(86)}>updateIssue</button>
-      <button onClick={() => deleteIssue(87)}>deleteIssue</button>
+      <button
+        onClick={(): Promise<IssuesInitialState | undefined> => updateIssue(86)}
+      >
+        updateIssue
+      </button>
+      <button
+        onClick={(): Promise<IssuesInitialState | undefined> => deleteIssue(87)}
+      >
+        deleteIssue
+      </button>
     </>
   );
 };
