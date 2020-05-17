@@ -3,7 +3,6 @@ import { api } from "../../api";
 import { IssuesContext } from "../../Store";
 import { useAuth0 } from "../../utils/react-auth0-spa";
 import {
-  FETCH_ISSUES,
   FETCH_ISSUE_BY_ID,
   FETCH_ISSUES_BY_PROJECT_ID,
   CREATE_ISSUE,
@@ -15,25 +14,6 @@ import { IssuesInitialState } from "../../reducers/IssuesReducer";
 const IssuePage = (): JSX.Element => {
   const { issuesState, issuesDispatch } = React.useContext(IssuesContext);
   const { getTokenSilently } = useAuth0();
-
-  const fetchIssues = async (): Promise<IssuesInitialState | undefined> => {
-    try {
-      const token = await getTokenSilently();
-      const response = await api.get("issues", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return issuesDispatch({
-        type: FETCH_ISSUES,
-        payload: response.data,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  console.log(fetchIssues);
 
   const fetchIssueById = async (
     issue_id: number
@@ -150,10 +130,9 @@ const IssuePage = (): JSX.Element => {
   return (
     <>
       <h1>IssuePage</h1>
-      <button onClick={fetchIssues}>fetchIssues</button>
       <button
         onClick={(): Promise<IssuesInitialState | undefined> =>
-          fetchIssueById(1)
+          fetchIssueById(33)
         }
       >
         fetchIssueByIssueId
@@ -172,7 +151,7 @@ const IssuePage = (): JSX.Element => {
         updateIssue
       </button>
       <button
-        onClick={(): Promise<IssuesInitialState | undefined> => deleteIssue(87)}
+        onClick={(): Promise<IssuesInitialState | undefined> => deleteIssue(88)}
       >
         deleteIssue
       </button>
