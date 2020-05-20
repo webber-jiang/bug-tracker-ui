@@ -65,9 +65,11 @@ const NavBar = () => {
     return (
       <Dropdown text="Projects" style={{ fontSize: 24, marginLeft: 20 }} inline>
         <Dropdown.Menu>
-          {projectsState.projects.length === 0
-            ? ""
-            : projectsState.projects.slice(0, 5).map((project) => {
+          {isAuthenticated ? (
+            projectsState.projects.length === 0 ? (
+              ""
+            ) : (
+              projectsState.projects.slice(0, 5).map((project) => {
                 return (
                   <>
                     <Dropdown.Item
@@ -76,7 +78,11 @@ const NavBar = () => {
                     />
                   </>
                 );
-              })}
+              })
+            )
+          ) : (
+            <Dropdown.Item text="New" />
+          )}
         </Dropdown.Menu>
       </Dropdown>
     );
@@ -127,7 +133,7 @@ const NavBar = () => {
   };
 
   const renderAvatar = () => {
-    return (
+    return isAuthenticated ? (
       <Dropdown
         text={
           <img
@@ -140,7 +146,14 @@ const NavBar = () => {
         icon=""
         style={{ marginTop: 5 }}
       >
+        icon="" style={{ marginTop: 5 }}>
         <Dropdown.Menu>
+          <Dropdown.Item text="New" />
+        </Dropdown.Menu>
+      </Dropdown>
+    ) : (
+      <Dropdown>
+        <Dropdown.Menu inline icon="" style={{ fontSize: 24 }}>
           <Dropdown.Item text="New" />
         </Dropdown.Menu>
       </Dropdown>
@@ -148,21 +161,19 @@ const NavBar = () => {
   };
 
   return (
-    isAuthenticated && (
-      <Navbar bg="light" expand="lg">
-        {renderIcon()}
-        {renderSearch()}
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            {renderProjectsDropdown()}
-            {renderPlaceholderDropdown()}
-          </Nav>
-          {renderSettings()}
-          {renderHelp()}
-          {renderAvatar()}
-        </Navbar.Collapse>
-      </Navbar>
-    )
+    <Navbar bg="light" expand="lg">
+      {renderIcon()}
+      {renderSearch()}
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+          {renderProjectsDropdown()}
+          {renderPlaceholderDropdown()}
+        </Nav>
+        {renderSettings()}
+        {renderHelp()}
+        {renderAvatar()}
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 
