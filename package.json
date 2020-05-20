@@ -34,6 +34,12 @@
       "prettier --write",
       "build-storybook -c .storybook -o .out",
       "git add .out"
+    ],
+    "src/**/*.{css,scss}": [
+      "stylelint *.css --fix",
+      "prettier --write",
+      "build-storybook -c .storybook -o .out",
+      "git add .out"
     ]
   },
   "eslintConfig": {
@@ -59,7 +65,9 @@
     "eslint-plugin-prettier": "^3.1.3",
     "husky": "^4.2.5",
     "lint-staged": "^10.1.3",
-    "prettier": "^2.0.4"
+    "prettier": "^2.0.4",
+    "stylelint": "^13.5.0",
+    "stylelint-config-standard": "^20.0.0"
   },
   "husky": {
     "hooks": {
