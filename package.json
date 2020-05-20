@@ -15,7 +15,8 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
-    "semantic-ui-react": "^0.88.2"
+    "semantic-ui-react": "^0.88.2",
+    "typescript": "^3.9.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -24,10 +25,11 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook",
     "pre-commit": "lint-staged",
-    "build-storybook": "build-storybook -c .storybook -o .out"
+    "build-storybook": "build-storybook -c .storybook -o .out",
+    "eslint": "eslint . --ext .sass,.css"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,css, scss}": [
+    "src/**/*.{js,jsx}": [
       "eslint --fix",
       "prettier --write",
       "build-storybook -c .storybook -o .out",

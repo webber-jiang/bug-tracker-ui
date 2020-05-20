@@ -4,12 +4,14 @@ import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
-import { Dropdown } from "semantic-ui-react";
 import InputGroup from "react-bootstrap/InputGroup";
+import { Dropdown } from "semantic-ui-react";
+
 import { useAuth0 } from "../../utils/react-auth0-spa";
 import { ProjectsContext } from "../../Store";
 import { api } from "../../api";
 import { FETCH_PROJECTS } from "../../utils/Types";
+import "./Navbar.css";
 
 const NavBar = () => {
   const { projectsState, projectsDispatch } = React.useContext(ProjectsContext);
@@ -39,7 +41,7 @@ const NavBar = () => {
   const renderIcon = () => {
     return (
       <Navbar.Brand href="#home">
-        <span style={{ fontSize: 36, color: "black" }}>
+        <span className="navbar-icon">
           <i className="fab fa-reddit" />
         </span>
       </Navbar.Brand>
@@ -48,9 +50,9 @@ const NavBar = () => {
 
   const renderSearch = () => {
     return (
-      <Form inline style={{ width: "20%", marginTop: 10 }}>
-        <InputGroup className="mb-3" style={{ width: "100%" }}>
-          <FormControl placeholder="Search" style={{ width: "100%" }} />
+      <Form inline className="navbar-search-form">
+        <InputGroup className="mb-3 navbar-search-input">
+          <FormControl placeholder="Search" />
           <InputGroup.Append>
             <Button variant="outline-secondary">
               <i className="fas fa-search" />
@@ -63,7 +65,7 @@ const NavBar = () => {
 
   const renderProjectsDropdown = () => {
     return (
-      <Dropdown text="Projects" style={{ fontSize: 24, marginLeft: 20 }} inline>
+      <Dropdown text="Projects" className="navbar-projects-dropdown" inline>
         <Dropdown.Menu>
           {isAuthenticated ? (
             projectsState.projects.length === 0 ? (
@@ -92,7 +94,7 @@ const NavBar = () => {
     return (
       <Dropdown
         text="Placeholder"
-        style={{ fontSize: 24, marginLeft: 30 }}
+        className="navbar-placeholder-dropdown"
         inline
       >
         <Dropdown.Menu>
@@ -108,7 +110,7 @@ const NavBar = () => {
         text={<i className="fas fa-cog" />}
         inline
         icon=""
-        style={{ fontSize: 24 }}
+        className="navbar-settings"
       >
         <Dropdown.Menu>
           <Dropdown.Item text="New" />
@@ -123,7 +125,7 @@ const NavBar = () => {
         text={<i className="fas fa-question-circle" />}
         inline
         icon=""
-        style={{ fontSize: 24 }}
+        className="navbar-help"
       >
         <Dropdown.Menu>
           <Dropdown.Item text="New" />
@@ -139,21 +141,25 @@ const NavBar = () => {
           <img
             src={user.picture}
             alt={`Avatar: ${user.name}`}
-            style={{ width: 30, borderRadius: 15 }}
+            className="navbar-avatar-icon"
           />
         }
         inline
         icon=""
-        style={{ marginTop: 5 }}
+        className="navbar-avatar-dropdown"
       >
-        icon="" style={{ marginTop: 5 }}>
         <Dropdown.Menu>
           <Dropdown.Item text="New" />
         </Dropdown.Menu>
       </Dropdown>
     ) : (
-      <Dropdown>
-        <Dropdown.Menu inline icon="" style={{ fontSize: 24 }}>
+      <Dropdown
+        text={<i className="fas fa-user-circle" />}
+        inline
+        icon=""
+        className="navbar-avatar-icon-placeholder"
+      >
+        <Dropdown.Menu>
           <Dropdown.Item text="New" />
         </Dropdown.Menu>
       </Dropdown>
