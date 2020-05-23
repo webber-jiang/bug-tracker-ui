@@ -93,11 +93,8 @@ import {
 // };
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const issuesReducer = (
-  // eslint-disable-next-line @typescript-eslint/typedef
-  state = {},
-  action: any
-) => {
+
+export const issuesReducer = (state: any = {}, action: any): any => {
   switch (action.type) {
     case FETCH_ISSUE_BY_ID:
       return { ...state, [action.payload.issueId]: action.payload };
@@ -108,17 +105,10 @@ export const issuesReducer = (
         ...state,
         [action.payload.issueId]: action.payload,
       };
-    // case UPDATE_ISSUE:
-    //   return { ...state, updateIssue: action.payload };
-    // case DELETE_ISSUE:
-    //   return {
-    //     ...state,
-    //     issuesByProjectId: [
-    //       ...state.issuesByProjectId.filter(
-    //         (issue: Issue) => issue.issueId !== action.payload.issueId
-    //       ),
-    //     ],
-    //   };
+    case UPDATE_ISSUE:
+      return { ...state, updateIssue: action.payload };
+    case DELETE_ISSUE:
+      return _.omit(state, action.payload);
     default:
       return state;
   }

@@ -3,15 +3,11 @@ import {
   commentsInitialState,
   commentsReducer,
 } from "./reducers/CommentsReducer";
-import {
-  issuesInitialState,
-  issuesReducer,
-  IssuesInitialState,
-} from "./reducers/IssuesReducer";
+import { issuesInitialState, issuesReducer } from "./reducers/IssuesReducer";
 
 export const CommentsContext = createContext({});
 export const IssuesContext = createContext<{
-  issuesState: IssuesInitialState;
+  issuesState: any;
   issuesDispatch: any;
 }>({ issuesState: issuesInitialState, issuesDispatch: () => null });
 

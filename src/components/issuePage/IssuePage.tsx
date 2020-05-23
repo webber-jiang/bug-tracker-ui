@@ -9,7 +9,10 @@ import {
   UPDATE_ISSUE,
   DELETE_ISSUE,
 } from "../../utils/Types";
-import { IssuesInitialState } from "../../reducers/IssuesReducer";
+import {
+  IssuesInitialState,
+  issuesInitialState,
+} from "../../reducers/IssuesReducer";
 
 const IssuePage = (): JSX.Element => {
   const { issuesState, issuesDispatch } = React.useContext(IssuesContext);
@@ -125,14 +128,14 @@ const IssuePage = (): JSX.Element => {
     }
   };
 
-  console.log(issuesState);
+  console.log(Object.values(issuesState));
 
   return (
     <>
       <h1>IssuePage</h1>
       <button
         onClick={(): Promise<IssuesInitialState | undefined> =>
-          fetchIssueById(33)
+          fetchIssueById(37)
         }
       >
         fetchIssueByIssueId
@@ -151,7 +154,7 @@ const IssuePage = (): JSX.Element => {
         updateIssue
       </button>
       <button
-        onClick={(): Promise<IssuesInitialState | undefined> => deleteIssue(88)}
+        onClick={(): Promise<IssuesInitialState | undefined> => deleteIssue(37)}
       >
         deleteIssue
       </button>
