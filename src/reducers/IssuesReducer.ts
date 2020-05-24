@@ -92,9 +92,18 @@ import {
 //   }
 // };
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface IssuesInitialState {}
+export const issuesInitialState: IssuesInitialState = {};
+interface Action {
+  type: string;
+  payload: any;
+}
 
-export const issuesReducer = (state: any = {}, action: any): any => {
+export const issuesReducer = (
+  state: IssuesInitialState = issuesInitialState,
+  action: Action
+): object => {
   switch (action.type) {
     case FETCH_ISSUE_BY_ID:
       return { ...state, [action.payload.issueId]: action.payload };
@@ -113,7 +122,3 @@ export const issuesReducer = (state: any = {}, action: any): any => {
       return state;
   }
 };
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface IssuesInitialState {}
-export const issuesInitialState: IssuesInitialState = {};
