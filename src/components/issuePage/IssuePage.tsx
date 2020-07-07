@@ -3,36 +3,21 @@ import { api } from "../../api";
 import { IssuesContext } from "../../Store";
 import { useAuth0 } from "../../utils/react-auth0-spa";
 import {
-  FETCH_ISSUES,
   FETCH_ISSUE_BY_ID,
   FETCH_ISSUES_BY_PROJECT_ID,
   CREATE_ISSUE,
   UPDATE_ISSUE,
   DELETE_ISSUE,
 } from "../../utils/Types";
+import { IssuesInitialState } from "../../reducers/IssuesReducer";
 
-const IssuePage = () => {
+const IssuePage = (): JSX.Element => {
   const { issuesState, issuesDispatch } = React.useContext(IssuesContext);
   const { getTokenSilently } = useAuth0();
 
-  const fetchIssues = async () => {
-    try {
-      const token = await getTokenSilently();
-      const response = await api.get("issues", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return issuesDispatch({
-        type: FETCH_ISSUES,
-        payload: response.data,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const fetchIssueById = async (issue_id) => {
+  const fetchIssueById = async (
+    issue_id: number
+  ): Promise<IssuesInitialState | undefined> => {
     try {
       const token = await getTokenSilently();
       const response = await api.get(`issues/${issue_id}`, {
@@ -49,7 +34,9 @@ const IssuePage = () => {
     }
   };
 
-  const fetchIssuesByProjectId = async (project_id) => {
+  const fetchIssuesByProjectId = async (
+    project_id: number
+  ): Promise<IssuesInitialState | undefined> => {
     try {
       const token = await getTokenSilently();
       const response = await api.get(`issues/projects/${project_id}`, {
@@ -66,7 +53,7 @@ const IssuePage = () => {
     }
   };
 
-  const createIssue = async () => {
+  const createIssue = async (): Promise<IssuesInitialState | undefined> => {
     const data = {
       project_id: 6,
       priority_id: "00",
@@ -93,7 +80,9 @@ const IssuePage = () => {
     }
   };
 
-  const updateIssue = async (issue_id) => {
+  const updateIssue = async (
+    issue_id: number
+  ): Promise<IssuesInitialState | undefined> => {
     const data = {
       priority_id: "01",
       status_id: "1",
@@ -117,7 +106,9 @@ const IssuePage = () => {
     }
   };
 
-  const deleteIssue = async (issue_id) => {
+  const deleteIssue = async (
+    issue_id: number
+  ): Promise<IssuesInitialState | undefined> => {
     try {
       const token = await getTokenSilently();
       await api.delete(`issues/${issue_id}`, {
@@ -134,19 +125,38 @@ const IssuePage = () => {
     }
   };
 
-  console.log(issuesState);
+  console.log(Object.values(issuesState));
 
   return (
     <>
       <h1>IssuePage</h1>
-      <button onClick={fetchIssues}>fetchIssues</button>
-      <button onClick={() => fetchIssueById(1)}>fetchIssueByIssueId</button>
-      <button onClick={() => fetchIssuesByProjectId(6)}>
+      <button
+        onClick={(): Promise<IssuesInitialState | undefined> =>
+          fetchIssueById(39)
+        }
+      >
+        fetchIssueByIssueId
+      </button>
+      <button
+        onClick={(): Promise<IssuesInitialState | undefined> =>
+          fetchIssuesByProjectId(6)
+        }
+      >
         fetchIssuesByProjectId
       </button>
       <button onClick={createIssue}>createIssue</button>
-      <button onClick={() => updateIssue(86)}>updateIssue</button>
-      <button onClick={() => deleteIssue(87)}>deleteIssue</button>
+      <button
+        onClick={(): Promise<IssuesInitialState | undefined> => updateIssue(86)}
+      >
+        updateIssue
+      </button>
+      <button
+        onClick={(): Promise<IssuesInitialState | undefined> =>
+          deleteIssue(193)
+        }
+      >
+        deleteIssue
+      </button>
     </>
   );
 };

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/typedef */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 import { useAuth0 } from "../../utils/react-auth0-spa";

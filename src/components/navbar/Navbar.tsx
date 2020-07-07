@@ -13,7 +13,7 @@ import { api } from "../../api";
 import { FETCH_PROJECTS } from "../../utils/Types";
 import "./Navbar.css";
 
-const NavBar = () => {
+const NavBar = (): JSX.Element => {
   const { projectsState, projectsDispatch } = React.useContext(ProjectsContext);
   const { getTokenSilently, user, isAuthenticated } = useAuth0();
 
@@ -38,7 +38,7 @@ const NavBar = () => {
     fetchProjects();
   }, [fetchProjects]);
 
-  const renderIcon = () => {
+  const renderIcon = (): JSX.Element => {
     return (
       <Navbar.Brand>
         <span className="navbar-icon">
@@ -48,7 +48,7 @@ const NavBar = () => {
     );
   };
 
-  const renderSearch = () => {
+  const renderSearch = (): JSX.Element => {
     return (
       <Form inline className="navbar-search-form">
         <InputGroup className="mb-3 navbar-search-input">
@@ -63,24 +63,26 @@ const NavBar = () => {
     );
   };
 
-  const renderProjectsDropdown = () => {
+  const renderProjectsDropdown = (): JSX.Element => {
     return (
       <Dropdown text="Projects" className="navbar-projects-dropdown" inline>
         <Dropdown.Menu className="navbar-projects-dropdown-menu">
           {isAuthenticated ? (
-            projectsState.projects.length === 0 ? (
+            Object.keys(projectsState).length === 0 ? (
               ""
             ) : (
-              projectsState.projects.slice(0, 5).map((project) => {
-                return (
-                  <>
-                    <Dropdown.Item
-                      key={project.projectId}
-                      text={project.projectName}
-                    />
-                  </>
-                );
-              })
+              Object.keys(projectsState)
+                .slice(0, 5)
+                .map((project: any) => {
+                  return (
+                    <>
+                      <Dropdown.Item
+                        key={project.projectId}
+                        text={project.projectName}
+                      />
+                    </>
+                  );
+                })
             )
           ) : (
             <>
@@ -94,7 +96,7 @@ const NavBar = () => {
     );
   };
 
-  const renderPlaceholderDropdown = () => {
+  const renderPlaceholderDropdown = (): JSX.Element => {
     return (
       <Dropdown
         text="Placeholder"
@@ -108,12 +110,11 @@ const NavBar = () => {
     );
   };
 
-  const renderSettings = () => {
+  const renderSettings = (): JSX.Element => {
     return (
       <Dropdown
-        text={<i className="fas fa-cog" />}
+        icon={<i className="fas fa-cog" />}
         inline
-        icon=""
         className="navbar-settings"
       >
         <Dropdown.Menu fluid>
@@ -127,12 +128,11 @@ const NavBar = () => {
     );
   };
 
-  const renderHelp = () => {
+  const renderHelp = (): JSX.Element => {
     return (
       <Dropdown
-        text={<i className="fas fa-question-circle" />}
+        icon={<i className="fas fa-question-circle" />}
         inline
-        icon=""
         className="navbar-help"
       >
         <Dropdown.Menu>
@@ -142,10 +142,10 @@ const NavBar = () => {
     );
   };
 
-  const renderAvatar = () => {
+  const renderAvatar = (): JSX.Element => {
     return isAuthenticated ? (
       <Dropdown
-        text={
+        icon={
           <img
             src={user.picture}
             alt={`Avatar: ${user.name}`}
@@ -153,7 +153,6 @@ const NavBar = () => {
           />
         }
         inline
-        icon=""
         className="navbar-avatar-dropdown"
       >
         <Dropdown.Menu>
@@ -162,9 +161,8 @@ const NavBar = () => {
       </Dropdown>
     ) : (
       <Dropdown
-        text={<i className="fas fa-user-circle" />}
+        icon={<i className="fas fa-user-circle" />}
         inline
-        icon=""
         className="navbar-avatar-icon-placeholder"
       >
         <Dropdown.Menu>

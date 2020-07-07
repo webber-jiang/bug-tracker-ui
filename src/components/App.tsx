@@ -11,7 +11,7 @@ import { useAuth0 } from "../utils/react-auth0-spa";
 import Profile from "./profile";
 import PrivateRoute from "./privateRoute";
 
-const App = () => {
+const App = (): JSX.Element => {
   const { loading } = useAuth0();
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
