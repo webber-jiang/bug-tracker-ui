@@ -40,7 +40,7 @@ const NavBar = () => {
 
   const renderIcon = () => {
     return (
-      <Navbar.Brand href="#home">
+      <Navbar.Brand>
         <span className="navbar-icon">
           <i className="fab fa-reddit" />
         </span>
@@ -66,7 +66,7 @@ const NavBar = () => {
   const renderProjectsDropdown = () => {
     return (
       <Dropdown text="Projects" className="navbar-projects-dropdown" inline>
-        <Dropdown.Menu>
+        <Dropdown.Menu className="navbar-projects-dropdown-menu">
           {isAuthenticated ? (
             projectsState.projects.length === 0 ? (
               ""
@@ -83,7 +83,11 @@ const NavBar = () => {
               })
             )
           ) : (
-            <Dropdown.Item text="New" />
+            <>
+              <Dropdown.Item text="Project 1" />
+              <Dropdown.Item text="This is a really looooooooooooong project name" />
+              <Dropdown.Item text="Bug Tracker" />
+            </>
           )}
         </Dropdown.Menu>
       </Dropdown>
@@ -112,8 +116,12 @@ const NavBar = () => {
         icon=""
         className="navbar-settings"
       >
-        <Dropdown.Menu>
-          <Dropdown.Item text="New" />
+        <Dropdown.Menu fluid>
+          <Dropdown.Item text="Setting 1" />
+          <Dropdown.Item text="Setting 2" />
+          <Dropdown.Item text="Setting 3" />
+          <Dropdown.Item text="Setting 4" />
+          <Dropdown.Item text="Setting 5" />
         </Dropdown.Menu>
       </Dropdown>
     );
@@ -128,7 +136,7 @@ const NavBar = () => {
         className="navbar-help"
       >
         <Dropdown.Menu>
-          <Dropdown.Item text="New" />
+          <Dropdown.Item text="Get help" />
         </Dropdown.Menu>
       </Dropdown>
     );
@@ -160,7 +168,9 @@ const NavBar = () => {
         className="navbar-avatar-icon-placeholder"
       >
         <Dropdown.Menu>
-          <Dropdown.Item text="New" />
+          <Dropdown.Item text="Profile" />
+          <Dropdown.Item text="Preferences" />
+          <Dropdown.Item text="Log out" />
         </Dropdown.Menu>
       </Dropdown>
     );

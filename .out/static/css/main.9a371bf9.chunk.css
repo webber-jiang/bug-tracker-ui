@@ -17,6 +17,10 @@
   margin-left: 20px;
 }
 
+.navbar-projects-dropdown .navbar-projects-dropdown-menu {
+  min-width: 300px;
+}
+
 .navbar-placeholder-dropdown {
   font-size: 24px;
   margin-left: 30px;
@@ -24,6 +28,10 @@
 
 .navbar-settings {
   font-size: 24px;
+}
+
+.navbar-settings-menu {
+  left: -50px;
 }
 
 .navbar-help {
@@ -44,4 +52,4 @@
 }
 
 
-/*# sourceMappingURL=main.451a93f3.chunk.css.map*/
+/*# sourceMappingURL=main.9a371bf9.chunk.css.map*/
