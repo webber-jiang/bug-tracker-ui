@@ -104,7 +104,9 @@ const NavBar = (): JSX.Element => {
         inline
       >
         <Dropdown.Menu>
-          <Dropdown.Item text="New" />
+          <Dropdown.Item text="Project 1" />
+          <Dropdown.Item text="This is a really looooooooooooong project name" />
+          <Dropdown.Item text="Bug Tracker" />
         </Dropdown.Menu>
       </Dropdown>
     );
