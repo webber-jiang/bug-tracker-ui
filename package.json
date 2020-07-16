@@ -33,7 +33,7 @@
     "storybook": "start-storybook",
     "pre-commit": "lint-staged",
     "build-storybook": "build-storybook -c .storybook -o .out",
-    "eslint": "eslint . --ext .sass,.css"
+    "eslint": "eslint . --ext .sass,.css,.tsx,.ts"
   },
   "lint-staged": {
     "src/**/*.{css, scss, ts, tsx}": [
