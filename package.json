@@ -36,7 +36,7 @@
     "eslint": "eslint . --ext .sass,.css,.tsx,.ts"
   },
   "lint-staged": {
-    "src/**/*.{css, scss, ts, tsx}": [
+    "src/**/*.{ts, tsx}": [
       "eslint --fix",
       "prettier --write",
       "build-storybook -c .storybook -o .out",

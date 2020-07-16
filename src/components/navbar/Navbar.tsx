@@ -71,7 +71,7 @@ const NavBar = (): JSX.Element => {
             Object.keys(projectsState).length === 0 ? (
               ""
             ) : (
-              Object.keys(projectsState)
+              Object.entries(projectsState)
                 .slice(0, 5)
                 .map((project: any) => {
                   return (
