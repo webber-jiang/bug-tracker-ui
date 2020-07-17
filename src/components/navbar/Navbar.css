@@ -1,0 +1,52 @@
+.navbar-icon {
+  font-size: 36px;
+  color: "black";
+}
+
+.navbar-search-form {
+  width: 20%;
+  margin-top: 10px;
+}
+
+.navbar-search-form .navbar-search-input {
+  width: 100%;
+}
+
+.navbar-projects-dropdown {
+  font-size: 24px;
+  margin-left: 20px;
+}
+
+.navbar-projects-dropdown .navbar-projects-dropdown-menu {
+  min-width: 300px;
+}
+
+.navbar-placeholder-dropdown {
+  font-size: 24px;
+  margin-left: 20px;
+}
+
+.navbar-settings {
+  font-size: 24px;
+  width: 43px;
+}
+
+.navbar-help {
+  font-size: 24px;
+  width: 43px;
+}
+
+.navbar-avatar-dropdown {
+  margin-top: 5px;
+}
+
+.navbar-avatar-icon {
+  width: 30px;
+  border-radius: 15px;
+  margin-bottom: 5px;
+}
+
+.navbar-avatar-icon-placeholder {
+  width: 40px;
+  font-size: 24px;
+}
