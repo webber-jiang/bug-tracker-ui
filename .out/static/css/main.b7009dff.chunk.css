@@ -28,10 +28,12 @@
 
 .navbar-settings {
   font-size: 24px;
+  margin-right: 20px;
 }
 
 .navbar-help {
   font-size: 24px;
+  margin-right: 20px;
 }
 
 .navbar-avatar-dropdown {
@@ -39,13 +41,16 @@
 }
 
 .navbar-avatar-icon {
-  width: 30px;
+  width: 40px;
   border-radius: 15px;
+  margin-right: 60px;
+  margin-bottom: 5px;
 }
 
 .navbar-avatar-icon-placeholder {
   font-size: 24px;
+  margin-right: 60px;
 }
 
 
-/*# sourceMappingURL=main.57e19c86.chunk.css.map*/
+/*# sourceMappingURL=main.b7009dff.chunk.css.map*/

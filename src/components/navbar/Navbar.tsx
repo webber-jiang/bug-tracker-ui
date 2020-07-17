@@ -115,11 +115,11 @@ const NavBar = (): JSX.Element => {
   const renderSettings = (): JSX.Element => {
     return (
       <Dropdown
-        icon={<i className="fas fa-cog" />}
         inline
+        icon={<i className="fas fa-cog" />}
         className="navbar-settings"
       >
-        <Dropdown.Menu fluid>
+        <Dropdown.Menu>
           <Dropdown.Item text="Setting 1" />
           <Dropdown.Item text="Setting 2" />
           <Dropdown.Item text="Setting 3" />
