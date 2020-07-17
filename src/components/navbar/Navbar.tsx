@@ -117,7 +117,7 @@ const NavBar = (): JSX.Element => {
       <Dropdown
         inline
         icon={<i className="fas fa-cog" />}
-        className="navbar-settings"
+        className="navbar-settings pointing top right"
       >
         <Dropdown.Menu>
           <Dropdown.Item text="Setting 1" />
@@ -135,7 +135,7 @@ const NavBar = (): JSX.Element => {
       <Dropdown
         icon={<i className="fas fa-question-circle" />}
         inline
-        className="navbar-help"
+        className="navbar-help pointing top right"
       >
         <Dropdown.Menu>
           <Dropdown.Item text="Get help" />
@@ -155,17 +155,19 @@ const NavBar = (): JSX.Element => {
           />
         }
         inline
-        className="navbar-avatar-dropdown"
+        className="navbar-avatar-dropdown pointing top right"
       >
         <Dropdown.Menu>
-          <Dropdown.Item text="New" />
+          <Dropdown.Item text="Profile" />
+          <Dropdown.Item text="Preferences" />
+          <Dropdown.Item text="Log out" />
         </Dropdown.Menu>
       </Dropdown>
     ) : (
       <Dropdown
         icon={<i className="fas fa-user-circle" />}
         inline
-        className="navbar-avatar-icon-placeholder"
+        className="navbar-avatar-icon-placeholder pointing top right"
       >
         <Dropdown.Menu>
           <Dropdown.Item text="Profile" />

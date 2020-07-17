@@ -23,17 +23,17 @@
 
 .navbar-placeholder-dropdown {
   font-size: 24px;
-  margin-left: 30px;
+  margin-left: 20px;
 }
 
 .navbar-settings {
   font-size: 24px;
-  margin-right: 20px;
+  width: 43px;
 }
 
 .navbar-help {
   font-size: 24px;
-  margin-right: 20px;
+  width: 43px;
 }
 
 .navbar-avatar-dropdown {
@@ -41,13 +41,12 @@
 }
 
 .navbar-avatar-icon {
-  width: 40px;
+  width: 30px;
   border-radius: 15px;
-  margin-right: 60px;
   margin-bottom: 5px;
 }
 
 .navbar-avatar-icon-placeholder {
+  width: 40px;
   font-size: 24px;
-  margin-right: 60px;
 }
