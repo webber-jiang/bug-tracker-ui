@@ -8,6 +8,8 @@ import {
   DELETE_ISSUE,
 } from "../utils/Types";
 
+import Action from "./Action";
+
 // export type Issue = {
 //   closeDate: string | null;
 //   description: string;
@@ -95,10 +97,6 @@ import {
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IssuesInitialState {}
 export const issuesInitialState: IssuesInitialState = {};
-interface Action {
-  type: string;
-  payload: any;
-}
 
 export const issuesReducer = (
   state: IssuesInitialState = issuesInitialState,
