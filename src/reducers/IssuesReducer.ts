@@ -8,7 +8,7 @@ import {
   DELETE_ISSUE,
 } from "../utils/Types";
 
-import Action from "./Action";
+import { Action } from "../common/interfaces";
 
 // export type Issue = {
 //   closeDate: string | null;

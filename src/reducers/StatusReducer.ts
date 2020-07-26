@@ -1,7 +1,7 @@
 import _ from "lodash";
 
 import { FETCH_STATUS, FETCH_STATUS_BY_ID } from "../utils/Types";
-import Action from "./Action";
+import { Action } from "../common/interfaces";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface StatusInitialState {}

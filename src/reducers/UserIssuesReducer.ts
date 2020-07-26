@@ -8,7 +8,7 @@ import {
   ASSIGN_USER_TO_ISSUE,
   REMOVE_USER_FROM_ISSUE,
 } from "../utils/Types";
-import Action from "./Action";
+import { Action } from "../common/interfaces";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface UserIssuesInitialState {}
